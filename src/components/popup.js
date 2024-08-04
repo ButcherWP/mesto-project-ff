@@ -4,19 +4,6 @@ export const openPopup = (popupType) => {
   document.addEventListener("keydown", closePopupEsc);
 };
 
-// Открытие попапа карточки
-export const showPopupCard = (name, link) => {
-  const popupTypeImage = document.querySelector(".popup_type_image");
-  const popupImage = popupTypeImage.querySelector(".popup__image");
-  const popupCaption = popupTypeImage.querySelector(".popup__caption");
-
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupCaption.textContent = name;
-
-  openPopup(popupTypeImage);
-};
-
 // Закрытие попапов
 export const closePopup = (popup) => {
   popup.classList.remove("popup_is-opened");

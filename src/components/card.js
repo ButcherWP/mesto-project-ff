@@ -1,4 +1,4 @@
-export const createCard = (card, callback, popupShow, cardLike) => {
+export const createCard = (card, deleteCard, handleImageClick, likeCard) => {
   const cardTemplate = document.querySelector("#card-template").content;
   const cloneTemplate = cardTemplate.querySelector(".card").cloneNode(true);
   const cardDeleteButton = cloneTemplate.querySelector(".card__delete-button");
@@ -6,22 +6,22 @@ export const createCard = (card, callback, popupShow, cardLike) => {
   const cardLikeButton = cloneTemplate.querySelector(".card__like-button");
 
   cloneTemplate.querySelector(".card__title").textContent = card.name;
-  cloneTemplate.querySelector(".card__image").src = card.link;
-  cloneTemplate.querySelector(".card__image").alt = card.name;
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
 
   //Слушатель на кнопку лайка
   cardLikeButton.addEventListener("click", () => {
-    cardLike(cardLikeButton);
+    likeCard(cardLikeButton);
   });
 
   // Слушатель на кнопку удаления карточки
   cardDeleteButton.addEventListener("click", () => {
-    callback(cloneTemplate);
+    deleteCard(cloneTemplate);
   });
 
   // Слушатель на открытие попапа по клику на изображение карточки
   cardImage.addEventListener("click", () => {
-    popupShow(card.name, card.link);
+    handleImageClick(card.name, card.link);
   });
 
   return cloneTemplate;
@@ -33,10 +33,6 @@ export const deleteCard = (card) => {
 };
 
 //Лайк
-export function cardLike(likeButton) {
-  if (likeButton.classList.contains("card__like-button_is-active")) {
-    likeButton.classList.remove("card__like-button_is-active");
-  } else {
-    likeButton.classList.add("card__like-button_is-active");
-  }
+export function likeCard(likeButton) {
+  likeButton.classList.toggle("card__like-button_is-active");
 }
