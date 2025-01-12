@@ -29,8 +29,13 @@ export const createCard = (card, handleImageClick, userData) => {
 
   // Слушатель на кнопку удаления карточки
   cardDeleteButton.addEventListener("click", () => {
-    deleteCard(cloneTemplate);
-    deleteCardAPI(card._id);
+    deleteCardAPI(card._id)
+      .then(() => {
+        deleteCard(cloneTemplate);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   // Слушатель на открытие попапа по клику на изображение карточки

@@ -80,7 +80,6 @@ export const showPopupCard = (name, link) => {
   popupCaption.textContent = name;
 
   openPopup(popupTypeImage);
-  clearValidation(popupFormCreateCard, validationConfig);
 };
 
 // Открытие попапа изменения профиля
