@@ -7,20 +7,20 @@ const config = {
 };
 
 //функция проверки ответа от сервера
-const CheckServerResponse = (res) => {
+const checkServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
 };
 
 export async function userInfo() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function getCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function changingUserInfo(name, about) {
@@ -31,7 +31,7 @@ export async function changingUserInfo(name, about) {
       name: name,
       about: about,
     }),
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function addNewCard(cardName, cardLink) {
@@ -42,28 +42,28 @@ export async function addNewCard(cardName, cardLink) {
       name: cardName,
       link: cardLink,
     }),
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function deleteCardAPI(card_id) {
   fetch(`${config.baseUrl}/cards/${card_id}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function likeCardAPI(card_id) {
   return fetch(`${config.baseUrl}/cards/likes/${card_id}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function deleteLikeCardAPI(card_id) {
   return fetch(`${config.baseUrl}/cards/likes/${card_id}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
 
 export async function changingUserAvatarAPI(avatarLink) {
@@ -73,5 +73,5 @@ export async function changingUserAvatarAPI(avatarLink) {
     body: JSON.stringify({
       avatar: avatarLink,
     }),
-  }).then(CheckServerResponse);
+  }).then(checkServerResponse);
 }
